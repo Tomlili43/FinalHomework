@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="code.PIMCalendar">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="368" y="275" width="734" height="394"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="3b63d" class="javax.swing.JLabel" binding="up">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="550" height="18"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="30"/>
+          <foreground color="-11974327"/>
+          <text value="Write down what you plan to do on this day"/>
+        </properties>
+      </component>
+      <component id="808a1" class="javax.swing.JButton" binding="ADDTOPIMManagerButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <horizontalAlignment value="0"/>
+          <text value="ADD TO PIMManager"/>
+        </properties>
+      </component>
+      <grid id="6422d" binding="kind" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="550" height="55"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="25"/>
+        </properties>
+        <border type="none" title="Choose kind"/>
+        <children>
+          <component id="f88d7" class="javax.swing.JRadioButton" binding="NOTERadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="77" height="11"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="20"/>
+              <text value="NOTE"/>
+            </properties>
+          </component>
+          <component id="113a7" class="javax.swing.JRadioButton" binding="TODORadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="81" height="11"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="20"/>
+              <text value="TODO"/>
+            </properties>
+          </component>
+          <component id="7af20" class="javax.swing.JRadioButton" binding="CONTACTRadioButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="119" height="13"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="20"/>
+              <text value="CONTACT"/>
+            </properties>
+          </component>
+          <component id="7d747" class="javax.swing.JRadioButton" binding="APPOINTMENTRadioButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="168" height="13"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font size="20"/>
+              <text value="APPOINTMENT"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="f8cef" binding="elevel" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="550" height="55"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="Choose emergency level"/>
+        <children>
+          <component id="c82f6" class="javax.swing.JRadioButton" binding="exUrgentRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="22"/>
+              <foreground color="-4502983"/>
+              <text value="ex-urgent"/>
+            </properties>
+          </component>
+          <component id="d3459" class="javax.swing.JRadioButton" binding="unlimitedRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="22"/>
+              <foreground color="-11427653"/>
+              <text value="unlimited"/>
+            </properties>
+          </component>
+          <component id="9d9b1" class="javax.swing.JRadioButton" binding="urgentRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="22"/>
+              <foreground color="-4486853"/>
+              <text value="urgent"/>
+            </properties>
+          </component>
+          <component id="953fa" class="javax.swing.JRadioButton" binding="normalRadioButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="22"/>
+              <foreground color="-10962104"/>
+              <text value="normal"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="65cb8" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="550" height="55"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="Input your item"/>
+        <children>
+          <component id="9d308" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="524" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="e65a4" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="550" height="55"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="Choose deadline date"/>
+        <children>
+          <component id="d3225" class="javax.swing.JList" binding="list1" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <hspacer id="486">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="levelGroup">
+      <member id="c82f6"/>
+      <member id="9d9b1"/>
+      <member id="953fa"/>
+      <member id="d3459"/>
+    </group>
+    <group name="kindGroup">
+      <member id="f88d7"/>
+      <member id="7af20"/>
+      <member id="113a7"/>
+      <member id="7d747"/>
+    </group>
+  </buttonGroups>
+</form>
