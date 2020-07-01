@@ -17,17 +17,21 @@
 
 package code;
 
+import Account.Login;
+
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
 public class PIMManager {
 	//save the 100 operation
-	public static Queue<String> operate = new LinkedList<String>();
+	public static Queue<String> operate = new LinkedList<>();
 	/*
 	Create a Map<key:account;value:password>,use IO to save it
 	 */
-	public static HashMap<String,String> user = new HashMap<String,String>();
+	public static PIMCollection operates = new PIMCollection();
+
+	public static HashMap<String,String> user = new HashMap<>();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -35,14 +39,20 @@ public class PIMManager {
 		/*
 		Here are the start of new operations:
 	 	*/
+		Login a = new Login();
+		//UIManager.setInstalledLookAndFeels(UIManager.getInstalledLookAndFeels());
 
-		UIManager.setInstalledLookAndFeels(UIManager.getInstalledLookAndFeels());
+		//JFrame jFrame=new PIMCalendar();
+		//jFrame.setVisible(true);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				PIMCalendar pimCalendar = new PIMCalendar();
-				pimCalendar.setVisible(true);
+//				PIMAddEntity pimAddEntity = new PIMAddEntity();
+//				pimAddEntity.setVisible(true);
+				Login pimLogin = new Login();
+//				pimLogin.setLayout(null);
+//				pimLogin.setVisible(true);
 			}
 		});
 
@@ -63,10 +73,10 @@ public class PIMManager {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		
-		
+
+
 		while (!"Quit".equals(command)) {
-			
+
 			int k = 1;
 			System.out.println("---Enter a command (supported commands are List Create Save Load Quit)---");
 			command = in.nextLine(); //��ȡ�����һ���ַ���
@@ -75,9 +85,9 @@ public class PIMManager {
 					System.out.println("There are " + operate.size() + " items.");
 					if(operate.size() > 0)
 						for(String s:operate) {
-			                System.out.println("Item "+ k + ": " + s);
-			                k++;
-			            }
+							System.out.println("Item "+ k + ": " + s);
+							k++;
+						}
 					break;
 				case "Create":
 					System.out.println("Enter an item type ( todo, note, contact or appointment )");
@@ -96,7 +106,7 @@ public class PIMManager {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
+
 							// input specific content
 							System.out.println("Enter todo text:");
 							BufferedReader brInTodo2 = new BufferedReader(new InputStreamReader(System.in));
@@ -108,11 +118,11 @@ public class PIMManager {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
+
 							// input priority
 							System.out.println("Enter todo priority:");
 							System.out.println("AVAILABLE: ex-urgent , urgent , normal, unrestricted");
-							
+
 							BufferedReader brInTodo3 = new BufferedReader(new InputStreamReader(System.in));
 							String pr;
 							try {
@@ -150,7 +160,7 @@ public class PIMManager {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
+
 							String opt1 = note.toString();
 							operate.add(opt1);
 							break;
@@ -167,7 +177,7 @@ public class PIMManager {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
+
 							// input specific content
 							System.out.println("Enter appointment text:");
 							BufferedReader brInAp2 = new BufferedReader(new InputStreamReader(System.in));
@@ -179,7 +189,7 @@ public class PIMManager {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
+
 							// input priority
 							System.out.println("Enter appointment priority:");
 							System.out.println("AVAILABLE: ex-urgent , urgent , normal, unrestricted");
@@ -192,7 +202,7 @@ public class PIMManager {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
+
 							String opt2 = appointment.toString();
 							operate.add(opt2);
 							break;
@@ -206,7 +216,7 @@ public class PIMManager {
 							BufferedReader brIncontact2 = new BufferedReader(new InputStreamReader(System.in));
 							BufferedReader brIncontact3 = new BufferedReader(new InputStreamReader(System.in));
 							BufferedReader brIncontact4 = new BufferedReader(new InputStreamReader(System.in));
-							
+
 							String pr3,firn,famn,ea;
 							try {
 								pr3 = brIncontact1.readLine();
@@ -218,15 +228,15 @@ public class PIMManager {
 								ea = brIncontact4.readLine();
 								// initialize new PIMContact
 								contact.set(pr3, firn, famn, ea);
-								
+
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
-							
-							
-							
+
+
+
+
 							String opt3 = contact.toString();
 							operate.add(opt3);
 							break;
@@ -251,7 +261,7 @@ public class PIMManager {
 					System.out.println("Items have been saved.");
 					break;
 				case "Load":
-					
+
 					String text = null;
 					try {
 						BufferedReader brs = new BufferedReader(
@@ -259,7 +269,7 @@ public class PIMManager {
 						while ((text = brs.readLine()) != null) {
 							System.out.println(text);
 						}
-				        
+
 					} catch (FileNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -267,15 +277,15 @@ public class PIMManager {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					
+
+
 				case "Quit":
 					break;
 				default:
 					System.out.println("Invalid Command! ");
 					break;
 			}
-			
+
 		}
 		in.close();
 	}
