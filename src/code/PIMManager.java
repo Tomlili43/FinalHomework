@@ -17,6 +17,7 @@
 
 package code;
 
+import Account.LocalSave;
 import Account.Login;
 
 import javax.swing.*;
@@ -30,20 +31,16 @@ public class PIMManager {
 	Create a Map<key:account;value:password>,use IO to save it
 	 */
 	public static PIMCollection operates = new PIMCollection();
-
 	public static HashMap<String,String> user = new HashMap<>();
+//	public static File file = new File("items.txt");
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+
 		/*
 		Here are the start of new operations:
 	 	*/
-		Login a = new Login();
-		//UIManager.setInstalledLookAndFeels(UIManager.getInstalledLookAndFeels());
-
-		//JFrame jFrame=new PIMCalendar();
-		//jFrame.setVisible(true);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -51,10 +48,14 @@ public class PIMManager {
 //				PIMAddEntity pimAddEntity = new PIMAddEntity();
 //				pimAddEntity.setVisible(true);
 				Login pimLogin = new Login();
+//				File file = new File("itemOf" + ".txt");
 //				pimLogin.setLayout(null);
 //				pimLogin.setVisible(true);
 			}
 		});
+//		Login pimLogin = new Login();
+
+		File file = new File("itemOf" + ".txt");
 
 		/*
 			end
@@ -64,16 +65,10 @@ public class PIMManager {
 		System.out.println("Welcome to PIM.");
 		String command = null;
 		BufferedWriter bw0;
-		File file = new File("items.txt");
-		try {
-			bw0 = new BufferedWriter(new FileWriter(file));
-			bw0.write("Items");
-			bw0.newLine();
-		} catch (IOException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
 
+		/*
+		old version
+		 */
 
 		while (!"Quit".equals(command)) {
 

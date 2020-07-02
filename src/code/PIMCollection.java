@@ -1,9 +1,10 @@
 package code;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class PIMCollection implements Collection {
+public class PIMCollection extends ArrayList {
 
     @Override
     public int size() {
