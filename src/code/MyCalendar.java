@@ -134,8 +134,8 @@ public class MyCalendar extends JFrame implements ActionListener {
                 System.out.println("添加事务");
                 UIManager.setInstalledLookAndFeels(UIManager.getInstalledLookAndFeels());
 
-                JFrame jFrame=new PIMCalendar();
-                jFrame.setVisible(true);
+                JFrame jFrame=new PIMAddEntity();
+//                jFrame.setVisible(true);
 
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
