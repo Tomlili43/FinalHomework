@@ -1,13 +1,10 @@
 package code;
 
 
-import Account.Login;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -77,17 +74,17 @@ public class MyCalendar extends JFrame implements ActionListener {
         getDateInfo(String.valueOf(year)+"-"+String.valueOf(month));
 
         //南部容器
-        JButton addJButton = new JButton("添加");
+        /*JButton addJButton = new JButton("添加");
         addJButton.setForeground(new Color(245,245,245));
         addJButton.setBackground(new Color(62, 78, 123));
         addJButton.setPreferredSize(new Dimension(50,35));
         addJButton.setBorder(null);
-        addJButton.setLayout(new FlowLayout((FlowLayout.RIGHT)));
+        addJButton.setLayout(new FlowLayout((FlowLayout.RIGHT)));*/
         foot.setSize(new Dimension(500,200));
         foot.setBackground(new Color(220,220,220));
         foot.setLayout(new FlowLayout(FlowLayout.CENTER));
-        foot.add(addJButton);
-        addJButton.addActionListener(this);
+        //foot.add(addJButton);
+        //addJButton.addActionListener(this);
 
 
         Container integralContainer=this.getContentPane();//创建全局容器
@@ -124,12 +121,14 @@ public class MyCalendar extends JFrame implements ActionListener {
                 break;
             case "下月":
                 System.out.println("进入下月");
+
                 if (month==12){
                     year++;
                     month=1;
                 }else
                     month++;
                 getDateInfo(String.valueOf(year)+"-"+String.valueOf(month));
+                break;
             case "添加":
                 System.out.println("添加事务");
                 UIManager.setInstalledLookAndFeels(UIManager.getInstalledLookAndFeels());
@@ -196,9 +195,19 @@ public class MyCalendar extends JFrame implements ActionListener {
                 foot.repaint();
                 JLabel show = new JLabel(year + "年" + month + "月");
                 show.setFont(new Font("SimHei", Font.BOLD, 20));
+                JButton addJButton = new JButton("添加");
+                addJButton.setForeground(new Color(245,245,245));
+                addJButton.setBackground(new Color(62, 78, 123));
+                addJButton.setPreferredSize(new Dimension(50,35));
+                addJButton.setBorder(null);
+                addJButton.setLayout(new FlowLayout((FlowLayout.RIGHT)));
+                foot.add(addJButton);
+                addJButton.addActionListener(this);
                 foot.add(show);//将标签添加到南部容器
                 foot.revalidate();
             }
+
+
         }catch (ParseException e){
             System.out.println("日期异常亦已被捕获，进程正常！");
         }
