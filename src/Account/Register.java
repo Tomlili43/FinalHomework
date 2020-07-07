@@ -79,6 +79,10 @@ public class Register extends JFrame {
 //                }
 //                appendMethod(file.getName(),usernameInput.getText() + " "
 //                            + passwordInput.getText() + "\n");
+                /*
+	                Create a Map<key:account;value:password>,use IO to save it
+	            */
+
                 appendMethod(file.getName(),usernameInput.getText() + " "
                         + passwordInput.getText() + " ");
                 JOptionPane.showMessageDialog(container, "注册成功！" );

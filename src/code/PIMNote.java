@@ -33,11 +33,11 @@ public class PIMNote extends PIMEntity {
 		this.content = content;
 	}
 	
-	@Override
-	public void fromString(String s) {
-		// TODO Auto-generated method stub
-		return ;
-	}
+//	@Override
+//	public void fromString(String s) {
+//		// TODO Auto-generated method stub
+//		return ;
+//	}
 
 	@Override
 	public String toString() {

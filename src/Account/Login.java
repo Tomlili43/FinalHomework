@@ -54,17 +54,6 @@ Login extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-//                    int tempId = Integer.parseInt(user.getText());
-//                    if (!LocalSave.accountPass.containsKey(tempId)) {
-//                        JOptionPane.showMessageDialog(c, "该账号尚未注册！", "错误", JOptionPane.ERROR_MESSAGE);
-//                    } else if (!LocalSave.accountPass.get(tempId).equals(pass.getText())) {
-//                        JOptionPane.showMessageDialog(c, "账号与密码不一致！", "错误", JOptionPane.ERROR_MESSAGE);
-//                    } else {
-//                        PIMCalendar c = new PIMCalendar();
-//                    }
-                /*
-                TODO
-                 */
                 check(user.getText(),pass.getText());
 
             }

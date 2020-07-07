@@ -1,73 +1,47 @@
 package code;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import jdk.internal.org.objectweb.asm.tree.IincInsnNode;
 
-public class PIMCollection extends ArrayList {
+import java.util.Arrays;
+import java.util.Map;
 
-    @Override
-    public int size() {
-        return 0;
+public class PIMCollection<T> {
+    private Object[] items;
+    private int cnt;
+    private final int MAX = 30;
+
+    public PIMCollection(){
+        items = new Object[MAX];
+        cnt = 0;
+    }
+
+    public int length(){
+        return cnt;
+    }
+
+    public void add(T t) throws Exception {
+        if(cnt < MAX){
+            items[cnt] = t;
+            cnt ++;
+        }
+        else {
+            throw new Exception("超过容量");
+        }
+    }
+
+    public T get(int idx){
+        if(idx < 0 || idx >= cnt ){
+            throw new IllegalArgumentException("下标越界");
+        }
+        return (T) items[idx];
     }
 
     @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return false;
-    }
-
-    @Override
-    public Iterator iterator() {
-        return null;
-    }
-
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
-    }
-
-    @Override
-    public boolean add(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public boolean retainAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[0];
+    public String toString() {
+        return "PIMCollection{" +
+                "items=" + Arrays.toString(items) +
+                ", cnt=" + cnt +
+                ", MAX=" + MAX +
+                '}';
     }
 }

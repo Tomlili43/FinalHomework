@@ -1,6 +1,7 @@
 package code;
 
 public abstract class PIMEntity {
+    public boolean OwnerIsPublic;
 	String Priority; // every kind of item has a priority
 
     // default constructor sets priority to "normal"
@@ -13,6 +14,10 @@ public abstract class PIMEntity {
         Priority =  priority;
     }
 
+    PIMEntity(String priority,boolean b){
+        Priority = priority;
+        OwnerIsPublic = b;
+    }
     // accessor method for getting the priority string
     public String getPriority() {
         return Priority;
@@ -30,4 +35,9 @@ public abstract class PIMEntity {
     // Object, but redefined here as abstract to make sure
     // that derived classes actually implement it
     abstract public String toString();
+
+    public void setOwnerIsPublic(boolean b) {
+        OwnerIsPublic = b;
+    }
+
 }

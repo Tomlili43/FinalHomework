@@ -30,11 +30,11 @@ public class PIMContact extends PIMEntity {
 		super.setPriority(p);
 	}
 	
-	@Override
-	public void fromString(String s) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void fromString(String s) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 	@Override
 	public String toString() {
