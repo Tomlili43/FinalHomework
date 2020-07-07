@@ -45,7 +45,6 @@ public class PIMDateable extends PIMEntity implements MyDate{
         this.deadline = deadline;
     }
 
-    @Override
     public void fromString(String s) {
         // TODO Auto-generated method stub
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");

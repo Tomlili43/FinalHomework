@@ -24,7 +24,7 @@ public abstract class PIMEntity {
 
     // Each PIMEntity needs to be able to set all state information
     // (fields) from a single text string.
-    abstract public void fromString(String s);
+    // abstract public void fromString(String s);
 
     // This is actually already defined by the super class
     // Object, but redefined here as abstract to make sure
