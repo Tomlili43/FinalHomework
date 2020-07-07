@@ -66,6 +66,7 @@ public class MyCalendar extends JFrame implements ActionListener {
         upJButton.addActionListener(this);
         downJButton.addActionListener(this);
 
+        MenuInit();
 
         //中部容器
         body.applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);//每行添加组件的顺序
@@ -217,6 +218,59 @@ public class MyCalendar extends JFrame implements ActionListener {
         JFrame jFrame=new MyCalendar();
         jFrame.setVisible(true);
     }*/
+
+
+
+    public void MenuInit() {
+
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem saveAction = new JMenuItem("Save");
+        JMenuItem loadAction = new JMenuItem("Load");
+        fileMenu.add(saveAction);
+        fileMenu.add(loadAction);
+
+        JMenu viewMenu = new JMenu("View");
+        JMenuItem todo = new JMenuItem("Todos");
+        JMenuItem note = new JMenuItem("Note");
+        JMenuItem appointment = new JMenuItem("Appointment");
+        JMenuItem contact = new JMenuItem("Contact");
+        viewMenu.add(todo);
+        viewMenu.add(note);
+        viewMenu.add(appointment);
+        viewMenu.add(contact);
+
+        menuBar.add(fileMenu);
+        menuBar.add(viewMenu);
+        setJMenuBar(menuBar);
+
+        //TODO:实现点击事件
+        todo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                //viewWindow td = new viewWindow(getTodos(username));
+            }
+        });
+        note.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                //viewWindow note = new viewWindow(getNotes(username));
+            }
+        });
+        appointment.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                //viewWindow appoint = new viewWindow(getAppointments(username));
+            }
+        });
+        contact.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                //viewWindow contact = new viewWindow(getContacts(username));
+            }
+        });
+
+
+
+
+    }
 }
 
 

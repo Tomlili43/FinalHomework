@@ -1,4 +1,3 @@
 package code;
-
-public class CustomizedException extends Exception {
-}
+import java.io.IOException;
+public class CustomizedException extends IOException {}

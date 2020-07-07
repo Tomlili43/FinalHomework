@@ -31,12 +31,22 @@ public class PIMManager {
 	Create a Map<key:account;value:password>,use IO to save it
 	 */
 	public static PIMCollection operates = new PIMCollection();
-	public static HashMap<String,String> user = new HashMap<>();
+//	public static HashMap<String,String> user = new HashMap<>();
 //	public static File file = new File("items.txt");
+	public static void Save(){
+
+	}
+	public static void Load(){
+
+	}
+
+	public static void Quit() {
+
+	}
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
 
 		/*
 		Here are the start of new operations:
@@ -266,10 +276,8 @@ public class PIMManager {
 						}
 
 					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
