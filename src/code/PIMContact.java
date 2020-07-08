@@ -39,8 +39,9 @@ public class PIMContact extends PIMEntity {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "[" + kind + " " + Priority
-				+ " " + firstName + " " + familyName + " " + emailAddress + "]";
+		return "[Kind:" + kind + " Priority:" + Priority
+				+ " FirstName:" + firstName + " FamilyName:" + familyName + " " +
+				"EmailAddress:" + emailAddress + "]";
 	}
 
 }

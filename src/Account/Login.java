@@ -28,6 +28,7 @@ Login extends JFrame{
     private Container c;
     private JLabel ID, password;
     private JButton login, register;
+    public static String userName;
 
     public Login() {
         super("PIMLogin");
@@ -101,6 +102,7 @@ Login extends JFrame{
             if(name.equals(entry.getKey())
                     && pswd.equals(entry.getValue())){
                 flag = true;
+                userName = entry.getKey();
                 break;
             }
         }

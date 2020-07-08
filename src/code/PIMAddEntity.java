@@ -1,6 +1,7 @@
 package code;
 
 import Account.LocalSave;
+import Account.Login;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -89,20 +90,28 @@ public class PIMAddEntity extends JFrame {
                         levelSelected = unlimitedRadioButton.getText();
                     }
 
+                    PIMEntity pe = null;
                     if(NOTERadioButton.isSelected()){
                         kindSelected = NOTERadioButton.getText();
-//                        PIMNote note = new PIMNote();
+                        pe = new PIMNote();
                     }
                     else if(TODORadioButton.isSelected()){
                         kindSelected = TODORadioButton.getText();
+                        pe = new PIMTodo();
                     }
                     else if(CONTACTRadioButton.isSelected()){
                         kindSelected = CONTACTRadioButton.getText();
+                        pe = new PIMContact();
                     }
                     else if(APPOINTMENTRadioButton.isSelected()){
                         kindSelected = APPOINTMENTRadioButton.getText();
+                        pe = new PIMAppointment();
                     }
 
+                    pe.setPriority(levelSelected);
+                    pe.owner = Login.userName;
+                    
+                    
                     r.seek(fileLength);
                     r.writeChars("level:" + levelSelected +" "
                             + "kind:" + kindSelected + " "

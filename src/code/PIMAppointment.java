@@ -8,7 +8,7 @@ public class PIMAppointment extends PIMDateable{
 
     @Override
     public String toString() {
-        return "[" + kind + " " + Priority
-                + " " + dateToStr(deadline) + " " + content + "]";
+        return "[Kind:" + kind + " Priority:" + Priority
+                + " Date:"+ dateToStr(deadline) + " Content:" + content + "]";
     }
 }
