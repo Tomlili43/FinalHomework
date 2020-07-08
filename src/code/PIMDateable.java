@@ -4,7 +4,6 @@ import java.text.*;
 import java.util.Date;
 
 public class PIMDateable extends PIMEntity implements MyDate{
-    public static String kind = "APPOINTMENT";
     public String Priority; // each appointment has a priority
     public String content; // each appointment has a content
     public java.util.Date deadline = null; // each appointment has a deadline
@@ -59,8 +58,7 @@ public class PIMDateable extends PIMEntity implements MyDate{
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return "[" + kind + " " + Priority
+        return "[" + Priority
                 + " " + dateToStr(deadline) + " " + content + "]";
     }
 
