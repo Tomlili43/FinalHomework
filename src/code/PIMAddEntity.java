@@ -94,6 +94,7 @@ public class PIMAddEntity extends JFrame {
                         //TODO：移植
 //                        PIMManager.Save();
                     }
+
                     else if(TODORadioButton.isSelected()){
                         PIMTodo pe = new PIMTodo();
                         pe.setPriority(levelSelected);
@@ -105,11 +106,27 @@ public class PIMAddEntity extends JFrame {
 
                         PIMManager.EntityList.add(pe);
                     }
+
                     else if(CONTACTRadioButton.isSelected()){
                         PIMContact pe = new PIMContact();
+                        pe.owner = Login.userName;
+                        pe.set(levelSelected,
+                                firstnfield.getText(),
+                                familynfield.getText(),
+                                emailAfield.getText());
+
+                        PIMManager.EntityList.add(pe);
                     }
                     else if(APPOINTMENTRadioButton.isSelected()){
                         PIMAppointment pe = new PIMAppointment();
+                        pe.setPriority(levelSelected);
+                        pe.owner = Login.userName;
+                        pe.fromString(monthfield.getText() +
+                                "/" + dayfield.getText() +
+                                "/" + yearfield.getText());
+                        pe.setContent(textField1.getText());
+
+                        PIMManager.EntityList.add(pe);
                     }
 
 

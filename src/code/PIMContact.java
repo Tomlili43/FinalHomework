@@ -36,6 +36,11 @@ public class PIMContact extends PIMEntity {
 //
 //	}
 
+
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
+	}
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
