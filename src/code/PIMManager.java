@@ -26,16 +26,45 @@ import java.util.*;
 
 public class PIMManager {
 	//save the 100 operation
-	//public static Queue<String> operate = new LinkedList<>();
-
+	public static File file;
 
 	public static PIMCollection<PIMEntity> EntityList = new PIMCollection<>();
 //	public static File file = new File("items.txt");
 	public static void Save(){
-
+		file = new File(Login.userName + ".txt");
+		RandomAccessFile r = null;
+		try {
+			r = new RandomAccessFile(file,"rw");
+			long fileLength = r.length();
+			r.seek(fileLength);
+			for(PIMEntity p:EntityList){
+				r.writeChars(p.toString());
+				r.writeChars("\n");
+//				if(p instanceof PIMNote){
+//					System.out.println("yes");
+//				}
+			}
+			r.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
+		}
 	}
-	public static void Load(){
 
+	public static void List(){
+		file = new File(Login.userName + ".txt");
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line;
+			while((line = br.readLine())!=null){//字符不等bai于空
+				System.out.println(line);//一行一行地输出du
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {

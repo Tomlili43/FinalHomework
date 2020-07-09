@@ -96,7 +96,6 @@ public class MyCalendar extends JFrame implements ActionListener {
 
     }
 
-
     @Override
     public void actionPerformed(ActionEvent actionEvent) {//监听事件
         String label=actionEvent.getActionCommand();
@@ -216,17 +215,15 @@ public class MyCalendar extends JFrame implements ActionListener {
         jFrame.setVisible(true);
     }*/
 
-
-
     public void MenuInit() {
 
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = new JMenu("File");
         JMenuItem saveAction = new JMenuItem("Save");
-        JMenuItem loadAction = new JMenuItem("Load");
+        JMenuItem listAction = new JMenuItem("List");
         fileMenu.add(saveAction);
-        fileMenu.add(loadAction);
+        fileMenu.add(listAction);
 
         JMenu viewMenu = new JMenu("View");
         JMenuItem todo = new JMenuItem("Todos");
@@ -241,22 +238,20 @@ public class MyCalendar extends JFrame implements ActionListener {
         menuBar.add(fileMenu);
         menuBar.add(viewMenu);
         setJMenuBar(menuBar);
-        todo.addActionListener(new ActionListener() {
+        saveAction.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                PIMManager.Save();
                 JOptionPane.showMessageDialog(rootPane,"Saved!");
             }
         });
-        todo.addActionListener(new ActionListener() {
+        listAction.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                //viewWindow td = new viewWindow(getTodos(username));
+                PIMManager.List();
+                JOptionPane.showMessageDialog(rootPane,"Listed!");
             }
         });
-        todo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                //viewWindow td = new viewWindow(getTodos(username));
-            }
-        });
+
 
 
         //TODO:实现点击事件

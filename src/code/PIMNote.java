@@ -41,8 +41,8 @@ public class PIMNote extends PIMEntity {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "[Kind:" + kind + " Priority:" + Priority
-				+ " Content:" + content + "]";
+		return "[Kind:" + this.kind + " Priority:" + this.Priority
+				+ " Content:" + this.content + "]";
 	}
 
 }

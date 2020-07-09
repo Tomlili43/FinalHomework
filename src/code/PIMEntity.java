@@ -2,7 +2,7 @@ package code;
 
 public abstract class PIMEntity {
     public String owner;
-    public String content;
+//    public String ic;
     public boolean OwnerIsPublic;
 	String Priority; // every kind of item has a priority
 

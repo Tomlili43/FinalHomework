@@ -23,20 +23,14 @@ public class PIMAddEntity extends JFrame {
     private JRadioButton TODORadioButton;
     private JRadioButton CONTACTRadioButton;
     private JRadioButton APPOINTMENTRadioButton;
-    public JTextField ItemField;
     private JTextField textField2;
     private JTextField textField3;
     private JTextField textField4;
+    private JTextField textField1;
 
     public PIMAddEntity(){
 
         add(rootPanel);
-        ItemField = new JTextField();
-//        getContentPane().add(ItemField);
-
-        ItemField.setText("fuck you all");
-        System.out.println(ItemField.getText());
-
 
         //combine levelGroup
         ButtonGroup levelGroup = new ButtonGroup();
@@ -52,7 +46,7 @@ public class PIMAddEntity extends JFrame {
         kindGroup.add(CONTACTRadioButton);
         kindGroup.add(APPOINTMENTRadioButton);
 
-        ItemField = new JTextField();
+//        ItemField = new JTextField();
 
         //able to close
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -62,11 +56,6 @@ public class PIMAddEntity extends JFrame {
         setSize(350,450);
         setLocation(350,300);
 
-        /*
-        new file name
-         */
-
-
         //ActionListener(when press the bottom button)
         ADDTOPIMManagerButton.addActionListener(new ActionListener() {
             @Override
@@ -74,7 +63,6 @@ public class PIMAddEntity extends JFrame {
                 //write in txt file
                 try {
                     String levelSelected = null;
-
                     if(exUrgentRadioButton.isSelected()){
                         levelSelected = exUrgentRadioButton.getText();
                     }
@@ -88,35 +76,39 @@ public class PIMAddEntity extends JFrame {
                         levelSelected = unlimitedRadioButton.getText();
                     }
 
-                    PIMEntity pe = null;
+
                     if(NOTERadioButton.isSelected()){
-                        pe = new PIMNote();
+                        PIMNote pe = new PIMNote();
+                        pe.setPriority(levelSelected);
+                        pe.owner = Login.userName;
+//                    System.out.println(ItemField.getText());
+                        pe.setContent(textField1.getText());
+//                        System.out.println(textField1.getText());
+//                        System.out.println("split");
+//                        System.out.println(pe.content);
+//                        System.out.println(pe.toString());
+                        PIMManager.EntityList.add(pe);
+//                        System.out.println(PIMManager.EntityList);
+//
+                        //TODO：移植
+//                        PIMManager.Save();
                     }
-                    else if(TODORadioButton.isSelected()){
-                        pe = new PIMTodo();
-                    }
-                    else if(CONTACTRadioButton.isSelected()){
-                        pe = new PIMContact();
-                    }
-                    else if(APPOINTMENTRadioButton.isSelected()){
-                        pe = new PIMAppointment();
-                    }
+//                    else if(TODORadioButton.isSelected()){
+//                        pe = new PIMTodo();
+//                    }
+//                    else if(CONTACTRadioButton.isSelected()){
+//                        pe = new PIMContact();
+//                    }
+//                    else if(APPOINTMENTRadioButton.isSelected()){
+//                        pe = new PIMAppointment();
+//                    }
 
-                    pe.setPriority(levelSelected);
-                    pe.owner = Login.userName;
-                    System.out.println(ItemField.getText());
-                    pe.content = ItemField.getText();
 
-                    file = new File(pe.owner + ".txt");
-                    RandomAccessFile r = new RandomAccessFile(file,"rw");
-                    long fileLength = r.length();
-                    r.seek(fileLength);
-                    r.writeChars(pe.toString());
-                    r.writeChars("\n");
-                    r.close();
 
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+//                } catch (IOException e1) {
+//                    e1.printStackTrace();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
                 }
 
                 JOptionPane.showMessageDialog(rootPane,"Success!");
