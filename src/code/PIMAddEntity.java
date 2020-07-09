@@ -34,7 +34,7 @@ public class PIMAddEntity extends JFrame {
         ItemField = new JTextField();
 //        getContentPane().add(ItemField);
 
-        ItemField.setText("fuck you");
+        ItemField.setText("fuck you all");
         System.out.println(ItemField.getText());
 
 
@@ -104,6 +104,7 @@ public class PIMAddEntity extends JFrame {
 
                     pe.setPriority(levelSelected);
                     pe.owner = Login.userName;
+                    System.out.println(ItemField.getText());
                     pe.content = ItemField.getText();
 
                     file = new File(pe.owner + ".txt");
