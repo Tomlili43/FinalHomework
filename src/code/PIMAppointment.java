@@ -8,7 +8,7 @@ public class PIMAppointment extends PIMDateable{
 
     @Override
     public String toString() {
-        return "[Public" + OwnerIsPublic + " Kind:" + kind + " Priority:" + Priority
+        return "[Public:" + OwnerIsPublic + " Kind:" + kind + " Priority:" + Priority
                 + " Date:"+ dateToStr(deadline) + " Content:" + content + "]";
     }
 }

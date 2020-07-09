@@ -8,7 +8,7 @@ public class PIMTodo extends PIMDateable{
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return "[Public" + OwnerIsPublic + " Kind:" + kind + " Priority:" + Priority
+        return "[Public:" + OwnerIsPublic + " Kind:" + kind + " Priority:" + Priority
                 + " Date:"+ dateToStr(deadline) + " Content:" + content + "]";
     }
 }
