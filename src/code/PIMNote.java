@@ -35,14 +35,13 @@ public class PIMNote extends PIMEntity {
 	
 //	@Override
 //	public void fromString(String s) {
-//		// TODO Auto-generated method stub
 //		return ;
 //	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "[Kind:" + kind + " Priority" + Priority
+		return "[Kind:" + kind + " Priority:" + Priority
 				+ " Content:" + content + "]";
 	}
 

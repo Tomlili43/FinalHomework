@@ -8,7 +8,7 @@ import java.util.Map;
 public class PIMCollection<T> {
     private Object[] items;
     private int cnt;
-    private final int MAX = 30;
+    private final int MAX = 5000;
 
     public PIMCollection(){
         items = new Object[MAX];

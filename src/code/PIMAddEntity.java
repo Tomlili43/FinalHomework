@@ -4,6 +4,7 @@ import Account.LocalSave;
 import Account.Login;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -11,6 +12,8 @@ import java.io.*;
 public class PIMAddEntity extends JFrame {
 //    public static         //txt to write textField
 //            File file = new File("items.txt");
+
+    public static File file;
     private JButton ADDTOPIMManagerButton;
     private JPanel rootPanel;
     private JLabel up;
@@ -25,12 +28,13 @@ public class PIMAddEntity extends JFrame {
     private JRadioButton CONTACTRadioButton;
     private JRadioButton APPOINTMENTRadioButton;
     public JTextField textField1;
-    private JList list1;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JTextField textField4;
 
     public PIMAddEntity(){
-
+        textField1 = new JTextField();
         add(rootPanel);
-
 
         //combine levelGroup
         ButtonGroup levelGroup = new ButtonGroup();
@@ -61,21 +65,17 @@ public class PIMAddEntity extends JFrame {
         new file name
          */
 
-        File file = new File("itemOf" + LocalSave.account.getUserName() + ".txt");
+//        File file = new File("itemOf" + LocalSave.account.getUserName() + ".txt");
+
 
         //ActionListener(when press the bottom button)
         ADDTOPIMManagerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String in = textField1.getText();
                 //write in txt file
                 try {
-//                    BufferedWriter bwinCal = new BufferedWriter(new FileWriter(file,true));
-                    RandomAccessFile r = new RandomAccessFile(file,"rw");
-                    long fileLength = r.length();
-
-                    String levelSelected = null, kindSelected = null;
-                    String in = textField1.getText();
+                    String levelSelected = null;
 
                     if(exUrgentRadioButton.isSelected()){
                         levelSelected = exUrgentRadioButton.getText();
@@ -92,37 +92,29 @@ public class PIMAddEntity extends JFrame {
 
                     PIMEntity pe = null;
                     if(NOTERadioButton.isSelected()){
-                        kindSelected = NOTERadioButton.getText();
                         pe = new PIMNote();
                     }
                     else if(TODORadioButton.isSelected()){
-                        kindSelected = TODORadioButton.getText();
                         pe = new PIMTodo();
                     }
                     else if(CONTACTRadioButton.isSelected()){
-                        kindSelected = CONTACTRadioButton.getText();
                         pe = new PIMContact();
                     }
                     else if(APPOINTMENTRadioButton.isSelected()){
-                        kindSelected = APPOINTMENTRadioButton.getText();
                         pe = new PIMAppointment();
                     }
 
                     pe.setPriority(levelSelected);
                     pe.owner = Login.userName;
-                    
-                    
+                    pe.content = in;
+
+                    file = new File(pe.owner + ".txt");
+                    RandomAccessFile r = new RandomAccessFile(file,"rw");
+                    long fileLength = r.length();
                     r.seek(fileLength);
-                    r.writeChars("level:" + levelSelected +" "
-                            + "kind:" + kindSelected + " "
-                            + "Item:" + in + "\n");
+                    r.writeChars(pe.toString()+ "\n");
                     r.close();
 
-//                    bwinCal.write("level:" + levelSelected +" "
-//                            + "kind:" + kindSelected + " "
-//                            + "Item:" + in);
-//                    bwinCal.newLine();
-//                    bwinCal.flush();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }

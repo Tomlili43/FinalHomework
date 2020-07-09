@@ -36,33 +36,33 @@ public class MyCalendar extends JFrame implements ActionListener {
         //北部容器
         head.setBackground(new Color(245,222,179));
         head.setLayout(new FlowLayout());
-        JButton searchJButton=new JButton("查询");
-        searchJButton.setFont(new Font("SimHei",Font.BOLD,15));
-        searchJButton.setForeground(new Color(245,245,245));
-        searchJButton.setBackground(new Color(255,140,0));
-        searchJButton.setPreferredSize(new Dimension(50,35));
-        searchJButton.setBorder(null);
-        JButton upJButton=new JButton("上月");
+//        JButton searchJButton=new JButton("查询");
+//        searchJButton.setFont(new Font("SimHei",Font.BOLD,15));
+//        searchJButton.setForeground(new Color(245,245,245));
+//        searchJButton.setBackground(new Color(255,140,0));
+//        searchJButton.setPreferredSize(new Dimension(50,35));
+//        searchJButton.setBorder(null);
+        JButton upJButton=new JButton("Last");
         upJButton.setFont(new Font("SimHei",Font.BOLD,15));
         upJButton.setForeground(new Color(245,245,245));
         upJButton.setBackground(new Color(105,105,105));
         upJButton.setBorder(null);
         upJButton.setPreferredSize(new Dimension(50,35));
-        JButton downJButton=new JButton("下月");
+        JButton downJButton=new JButton("Next");
         downJButton.setFont(new Font("SimHei",Font.BOLD,15));
         downJButton.setForeground(new Color(245,245,245));
         downJButton.setBackground(new Color(105,105,105));
         downJButton.setBorder(null);
         downJButton.setPreferredSize(new Dimension(50,35));
-        JLabel jLabelShow=new JLabel("请输入年份：");
-        jLabelShow.setFont(new Font("SimHei",Font.BOLD,15));
-        text=new JTextField(15);
-        head.add(jLabelShow);
-        head.add(text);
-        head.add(searchJButton);
+//        JLabel jLabelShow=new JLabel("Year：");
+//        jLabelShow.setFont(new Font("SimHei",Font.BOLD,15));
+//        text=new JTextField(100);
+//        head.add(jLabelShow);
+//        head.add(text);
+//        head.add(searchJButton);
         head.add(upJButton);
         head.add(downJButton);
-        searchJButton.addActionListener(this);
+//        searchJButton.addActionListener(this);
         upJButton.addActionListener(this);
         downJButton.addActionListener(this);
 
@@ -101,18 +101,18 @@ public class MyCalendar extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {//监听事件
         String label=actionEvent.getActionCommand();
         switch (label) {
-            case "查询":
-                System.out.println("进入查询");
-                try {
-                    year = Integer.parseInt(text.getText());
-                    month=1;
-                    getDateInfo(String.valueOf(year)+"-"+String.valueOf(month));
-                }catch (NumberFormatException e){
-                    System.out.println("非数字异常已被捕获，进程正常！");
-                }
-                break;
-            case "上月":
-                System.out.println("进入上月");
+//            case "查询":
+//                System.out.println("进入查询");
+//                try {
+//                    year = Integer.parseInt(text.getText());
+//                    month=1;
+//                    getDateInfo(String.valueOf(year)+"-"+String.valueOf(month));
+//                }catch (NumberFormatException e){
+//                    System.out.println("非数字异常已被捕获，进程正常！");
+//                }
+//                break;
+            case "Last":
+                System.out.println("Last Month");
                 if (month==1){
                     year--;
                     month=12;
@@ -120,8 +120,8 @@ public class MyCalendar extends JFrame implements ActionListener {
                     month--;
                 getDateInfo(String.valueOf(year)+"-"+String.valueOf(month));
                 break;
-            case "下月":
-                System.out.println("进入下月");
+            case "Next":
+                System.out.println("Next Month");
 
                 if (month==12){
                     year++;
@@ -130,8 +130,8 @@ public class MyCalendar extends JFrame implements ActionListener {
                     month++;
                 getDateInfo(String.valueOf(year)+"-"+String.valueOf(month));
                 break;
-            case "添加":
-                System.out.println("添加事务");
+            case "Add":
+                System.out.println("Add new");
                 UIManager.setInstalledLookAndFeels(UIManager.getInstalledLookAndFeels());
 
                 JFrame jFrame=new PIMAddEntity();
@@ -196,7 +196,7 @@ public class MyCalendar extends JFrame implements ActionListener {
                 foot.repaint();
                 JLabel show = new JLabel(year + "年" + month + "月");
                 show.setFont(new Font("SimHei", Font.BOLD, 20));
-                JButton addJButton = new JButton("添加");
+                JButton addJButton = new JButton("Add");
                 addJButton.setForeground(new Color(245,245,245));
                 addJButton.setBackground(new Color(62, 78, 123));
                 addJButton.setPreferredSize(new Dimension(50,35));
@@ -244,6 +244,23 @@ public class MyCalendar extends JFrame implements ActionListener {
         menuBar.add(fileMenu);
         menuBar.add(viewMenu);
         setJMenuBar(menuBar);
+        todo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(rootPane,"Saved!");
+            }
+        });
+        todo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                //viewWindow td = new viewWindow(getTodos(username));
+            }
+        });
+        todo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                //viewWindow td = new viewWindow(getTodos(username));
+            }
+        });
+
 
         //TODO:实现点击事件
         todo.addActionListener(new ActionListener() {

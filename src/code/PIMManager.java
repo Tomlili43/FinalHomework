@@ -38,11 +38,6 @@ public class PIMManager {
 
 	}
 
-	public static void Quit() {
-
-	}
-
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -57,7 +52,7 @@ public class PIMManager {
 			}
 		});
 
-		File file = new File("itemOf" + ".txt");
+//		File file = new File("itemOf" + ".txt");
 
 		/*
 			end
