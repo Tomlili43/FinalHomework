@@ -1,17 +1,13 @@
 package code;
 
-import Account.LocalSave;
 import Account.Login;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
 public class PIMAddEntity extends JFrame {
-//    public static         //txt to write textField
-//            File file = new File("items.txt");
 
     public static File file;
     private JButton ADDTOPIMManagerButton;
@@ -27,14 +23,20 @@ public class PIMAddEntity extends JFrame {
     private JRadioButton TODORadioButton;
     private JRadioButton CONTACTRadioButton;
     private JRadioButton APPOINTMENTRadioButton;
-    public JTextField textField1;
+    public JTextField ItemField;
     private JTextField textField2;
     private JTextField textField3;
     private JTextField textField4;
 
     public PIMAddEntity(){
-        textField1 = new JTextField();
+
         add(rootPanel);
+        ItemField = new JTextField();
+//        getContentPane().add(ItemField);
+
+        ItemField.setText("fuck you");
+        System.out.println(ItemField.getText());
+
 
         //combine levelGroup
         ButtonGroup levelGroup = new ButtonGroup();
@@ -50,7 +52,7 @@ public class PIMAddEntity extends JFrame {
         kindGroup.add(CONTACTRadioButton);
         kindGroup.add(APPOINTMENTRadioButton);
 
-
+        ItemField = new JTextField();
 
         //able to close
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -60,19 +62,15 @@ public class PIMAddEntity extends JFrame {
         setSize(350,450);
         setLocation(350,300);
 
-
         /*
         new file name
          */
-
-//        File file = new File("itemOf" + LocalSave.account.getUserName() + ".txt");
 
 
         //ActionListener(when press the bottom button)
         ADDTOPIMManagerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String in = textField1.getText();
                 //write in txt file
                 try {
                     String levelSelected = null;
@@ -106,19 +104,19 @@ public class PIMAddEntity extends JFrame {
 
                     pe.setPriority(levelSelected);
                     pe.owner = Login.userName;
-                    pe.content = in;
+                    pe.content = ItemField.getText();
 
                     file = new File(pe.owner + ".txt");
                     RandomAccessFile r = new RandomAccessFile(file,"rw");
                     long fileLength = r.length();
                     r.seek(fileLength);
-                    r.writeChars(pe.toString()+ "\n");
+                    r.writeChars(pe.toString());
+                    r.writeChars("\n");
                     r.close();
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-
 
                 JOptionPane.showMessageDialog(rootPane,"Success!");
             }
