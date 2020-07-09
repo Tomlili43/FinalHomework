@@ -39,7 +39,7 @@ public class PIMContact extends PIMEntity {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "[Kind:" + kind + " Priority:" + Priority
+		return "[Public" + OwnerIsPublic +" Kind:" + kind + " Priority:" + Priority
 				+ " FirstName:" + firstName + " FamilyName:" + familyName + " " +
 				"EmailAddress:" + emailAddress + "]";
 	}

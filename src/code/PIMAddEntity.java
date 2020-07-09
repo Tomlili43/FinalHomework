@@ -23,10 +23,13 @@ public class PIMAddEntity extends JFrame {
     private JRadioButton TODORadioButton;
     private JRadioButton CONTACTRadioButton;
     private JRadioButton APPOINTMENTRadioButton;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JTextField dayfield;
+    private JTextField yearfield;
+    private JTextField monthfield;
     private JTextField textField1;
+    private JTextField familynfield;
+    private JTextField emailAfield;
+    private JTextField firstnfield;
 
     public PIMAddEntity(){
 
@@ -45,8 +48,6 @@ public class PIMAddEntity extends JFrame {
         kindGroup.add(TODORadioButton);
         kindGroup.add(CONTACTRadioButton);
         kindGroup.add(APPOINTMENTRadioButton);
-
-//        ItemField = new JTextField();
 
         //able to close
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -93,15 +94,23 @@ public class PIMAddEntity extends JFrame {
                         //TODO：移植
 //                        PIMManager.Save();
                     }
-//                    else if(TODORadioButton.isSelected()){
-//                        pe = new PIMTodo();
-//                    }
-//                    else if(CONTACTRadioButton.isSelected()){
-//                        pe = new PIMContact();
-//                    }
-//                    else if(APPOINTMENTRadioButton.isSelected()){
-//                        pe = new PIMAppointment();
-//                    }
+                    else if(TODORadioButton.isSelected()){
+                        PIMTodo pe = new PIMTodo();
+                        pe.setPriority(levelSelected);
+                        pe.owner = Login.userName;
+                        pe.fromString(monthfield.getText() +
+                                "/" + dayfield.getText() +
+                                "/" + yearfield.getText());
+                        pe.setContent(textField1.getText());
+
+                        PIMManager.EntityList.add(pe);
+                    }
+                    else if(CONTACTRadioButton.isSelected()){
+                        PIMContact pe = new PIMContact();
+                    }
+                    else if(APPOINTMENTRadioButton.isSelected()){
+                        PIMAppointment pe = new PIMAppointment();
+                    }
 
 
 

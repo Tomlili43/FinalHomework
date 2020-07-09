@@ -11,15 +11,22 @@ public abstract class PIMEntity {
         Priority = "normal";
     }
 
-    // priority can be established via this constructor.
-    PIMEntity(String priority) {
-        Priority =  priority;
+    PIMEntity(String owner){
+        this.owner = owner;
     }
 
-    PIMEntity(String priority,boolean b){
-        Priority = priority;
+    // priority can be established via this constructor.
+    PIMEntity(boolean b) {
         OwnerIsPublic = b;
     }
+
+    PIMEntity(String owner,boolean b){
+        this.owner = owner;
+        OwnerIsPublic = b;
+    }
+
+
+
     // accessor method for getting the priority string
     public String getPriority() {
         return Priority;
