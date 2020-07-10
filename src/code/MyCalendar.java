@@ -1,28 +1,34 @@
 package code;
 
 
+import Account.Login;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class MyCalendar extends JFrame implements ActionListener {
+public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollection {
 
     public JTextField text;
     JPanel head=new JPanel();//北部容器
     JPanel body=new JPanel();//中部容器
     JPanel foot=new JPanel();//南部容器
+    JPanel leftPanel = new JPanel();
+    JPanel rightPanel = new JPanel();
     Calendar calendar = Calendar.getInstance();
     int dayNow = calendar.get(Calendar.DATE);
     int monthNow = calendar.get(Calendar.MONTH) + 1;
     int yearNow = calendar.get(Calendar.YEAR);
     int year = calendar.get(Calendar.YEAR);//获取当前查询年份，默认为当前年份
     int month = calendar.get(Calendar.MONTH) + 1;//获取当前查询月份，默认为当前月份
+    public File file = new File(Login.userName + ".txt");
 
     public MyCalendar(String str){//构造方法
         //主要参数设置
@@ -32,6 +38,9 @@ public class MyCalendar extends JFrame implements ActionListener {
         setResizable(false);//关闭窗体大小可调
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        leftPanel.add(head);
+        leftPanel.add(body);
+        leftPanel.add(foot);
         //界面布局
         //北部容器
         head.setBackground(new Color(245,222,179));
@@ -215,6 +224,8 @@ public class MyCalendar extends JFrame implements ActionListener {
         jFrame.setVisible(true);
     }*/
 
+
+
     public void MenuInit() {
 
         JMenuBar menuBar = new JMenuBar();
@@ -248,31 +259,48 @@ public class MyCalendar extends JFrame implements ActionListener {
         listAction.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 PIMManager.List();
-                JOptionPane.showMessageDialog(rootPane,"Listed!");
+                //JOptionPane.showMessageDialog(rootPane,"Listed!");
             }
         });
+
 
 
 
         //TODO:实现点击事件
         todo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                //viewWindow td = new viewWindow(getTodos(username));
+                try {
+                    System.out.println(getTodos(Login.userName));
+                } catch (CustomizedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         note.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                //viewWindow note = new viewWindow(getNotes(username));
+                try {
+                    System.out.println(getNotes(Login.userName));
+                } catch (CustomizedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         appointment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                //viewWindow appoint = new viewWindow(getAppointments(username));
+                try {
+                    System.out.println(getAppointments(Login.userName));
+                } catch (CustomizedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         contact.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                //viewWindow contact = new viewWindow(getContacts(username));
+                try {
+                    System.out.println(getContacts(Login.userName));
+                } catch (CustomizedException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -280,6 +308,163 @@ public class MyCalendar extends JFrame implements ActionListener {
 
 
     }
+
+
+
+
+
+
+    @Override
+    public PIMCollection getNotes() throws CustomizedException {
+        return null;
+    }
+
+    @Override
+    public PIMCollection getNotes(String owner) throws CustomizedException {
+        try {
+            FileInputStream fn = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fn);
+            String line = "",all = "";
+            PIMCollection<PIMEntity> collection = new PIMCollection<>();
+            Object obj;
+            while ((obj=ois.readObject())!=null){
+                if(ois.readObject() instanceof PIMNote){
+                    System.out.println(ois.readObject());
+                    PIMNote pp = (PIMNote) ois.readObject();
+                    collection.add(pp);
+                }
+            }
+            System.out.println(collection);
+            ois.close();
+            return collection;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public PIMCollection getTodos() throws CustomizedException {
+        return null;
+    }
+
+    @Override
+    public PIMCollection getTodos(String owner) throws CustomizedException {
+        try {
+            FileInputStream fn = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fn);
+            String line = "",all = "";
+            PIMCollection<PIMEntity> collection = new PIMCollection<>();
+            Object obj;
+            while ((obj=ois.readObject())!=null){
+                if(ois.readObject() instanceof PIMTodo){
+                    PIMTodo pp = (PIMTodo) ois.readObject();
+                    collection.add(pp);
+                }
+            }
+            ois.close();
+            return collection;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public PIMCollection getAppointments() throws CustomizedException {
+        return null;
+    }
+
+    @Override
+    public PIMCollection getAppointments(String owner) throws CustomizedException {
+        try {
+            FileInputStream fn = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fn);
+            String line = "",all = "";
+            PIMCollection<PIMEntity> collection = new PIMCollection<>();
+            Object obj;
+            while ((obj=ois.readObject())!=null){
+                if(ois.readObject() instanceof PIMAppointment){
+                    PIMAppointment pp = (PIMAppointment) ois.readObject();
+                    collection.add(pp);
+                }
+            }
+            ois.close();
+            return collection;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public PIMCollection getContacts() throws CustomizedException {
+        return null;
+    }
+
+    @Override
+    public PIMCollection getContacts(String owner) throws CustomizedException {
+        try {
+            FileInputStream fn = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fn);
+            String line = "",all = "";
+            PIMCollection<PIMEntity> collection = new PIMCollection<>();
+            Object obj;
+            while ((obj=ois.readObject())!=null){
+                if(ois.readObject() instanceof PIMContact){
+                    PIMContact pp = (PIMContact) ois.readObject();
+                    collection.add(pp);
+                }
+            }
+            ois.close();
+            return collection;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public PIMCollection getItemsForDate(Date d) throws CustomizedException {
+        return null;
+    }
+
+    @Override
+    public PIMCollection getItemsForDate(Date d, String owner) throws CustomizedException {
+        return null;
+    }
+
+    @Override
+    public PIMCollection getAll() throws CustomizedException {
+        return null;
+    }
+
+    @Override
+    public PIMCollection getAllByOwner(String owner) throws CustomizedException {
+        return null;
+    }
+
+    @Override
+    public boolean add(PIMEntity pimEntity) throws CustomizedException {
+        return false;
+    }
+
 }
 
 

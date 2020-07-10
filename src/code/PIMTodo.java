@@ -3,7 +3,7 @@ package code;
 import java.text.*;
 
 public class PIMTodo extends PIMDateable{
-    public static String kind = "APPOINTMENT";
+    public static String kind = "TODO";
 
     @Override
     public String toString() {

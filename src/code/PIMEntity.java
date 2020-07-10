@@ -1,6 +1,8 @@
 package code;
 
-public abstract class PIMEntity {
+import java.io.Serializable;
+
+public abstract class PIMEntity implements Serializable {
     public String owner;
 //    public String ic;
     public boolean OwnerIsPublic;
