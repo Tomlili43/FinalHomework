@@ -25,6 +25,32 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
+class MyObjectOutputStream extends ObjectOutputStream {
+	private static File f;
+
+	public static MyObjectOutputStream newInstance(File file, OutputStream out)
+			throws IOException {
+		f = file;//本方法最重要的地方：构建文件对象，是两个文件对象属于同一个
+		return new MyObjectOutputStream(out, f);
+	}
+
+	@Override
+	protected void writeStreamHeader() throws IOException {
+		if (!f.exists() || (f.exists() && f.length() == 0)) {
+			super.writeStreamHeader();
+		} else {
+			super.reset();
+		}
+	}
+
+	public MyObjectOutputStream(OutputStream out, File f) throws IOException {
+		super(out);
+	}
+}
+
+
+
+
 public class PIMManager {
 	//save the 100 operation
 	public static File file;
@@ -32,10 +58,13 @@ public class PIMManager {
 
 	public static PIMCollection<PIMEntity> EntityList = new PIMCollection<>();
 //	public static File file = new File("items.txt");
+
 	public static void Save() {
 		file = new File(Login.userName + ".txt");
 		try {
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+			FileOutputStream fn = new FileOutputStream(file,true);
+			ObjectOutputStream oos = new ObjectOutputStream(fn);
+//			long pos = 0;
 			for (PIMEntity p : EntityList) {
 				oos.writeObject(p);
 			}
@@ -60,12 +89,19 @@ public class PIMManager {
 			listFrame.setBounds(200,200,800,500);
 
 			String all = "";
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+			FileInputStream fn = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fn);
 			Object obj;
-			while ((obj = ois.readObject()) != null){
-				PIMEntity pp = (PIMEntity)obj;
-				System.out.println(pp);
+			int cnt = 0;
+			while ((obj =  ois.readObject()) != null){
+				if(cnt >= 1){
+
+				}
+
+				PIMEntity pp = (PIMEntity) obj;
 				all = all + pp.toString() + "\n";
+
+				cnt++;
 			}
 
 			text.setText(all);
