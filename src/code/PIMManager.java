@@ -19,48 +19,32 @@ package code;
 
 import Account.LocalSave;
 import Account.Login;
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
-import java.util.*;
 
 public class PIMManager {
 	//save the 100 operation
 	public static File file;
+	public static int len;public static long len_before;
 
 	public static PIMCollection<PIMEntity> EntityList = new PIMCollection<>();
 //	public static File file = new File("items.txt");
-	public static void Save(){
+	public static void Save() {
 		file = new File(Login.userName + ".txt");
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-			for(PIMEntity p:EntityList) {
+			for (PIMEntity p : EntityList) {
 				oos.writeObject(p);
 			}
+			oos.writeObject(null);
+			oos.flush();
 			oos.close();
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 		}
-
-//		RandomAccessFile r = null;
-//		try {
-//			r = new RandomAccessFile(file,"rw");
-//			long fileLength = r.length();
-//			r.seek(fileLength);
-//			for(PIMEntity p:EntityList){
-//				r.writeChars(p.toString());
-//				r.writeChars("\n");
-////				if(p instanceof PIMNote){
-////					System.out.println("yes");
-////				}
-//			}
-//			r.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (IOException ioException) {
-//			ioException.printStackTrace();
-//		}
 	}
 
 	public static void List(){
@@ -75,24 +59,17 @@ public class PIMManager {
 			listFrame.setVisible(true);
 			listFrame.setBounds(200,200,800,500);
 
-			String all = "",line = "";
-			FileInputStream fn = new FileInputStream(file);
-			ObjectInputStream ois = new ObjectInputStream(fn);
+			String all = "";
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 			Object obj;
-			while (fn.available() > 0){
-				PIMEntity pp = (PIMEntity)ois.readObject();
-				line = pp.toString();
-				all = all + line + "\n";
+			while ((obj = ois.readObject()) != null){
+				PIMEntity pp = (PIMEntity)obj;
+				System.out.println(pp);
+				all = all + pp.toString() + "\n";
 			}
-			text.setText(all);
 
-//			BufferedReader br = new BufferedReader(new FileReader(file));
-//			String line,all="";
-//			while((line = br.readLine())!=null){//字符不等bai于空
-//				all = all + line + "\n";
-//				//System.out.println(line);//一行一行地输出du
-//			}
-//			text.setText(all);
+			text.setText(all);
+			ois.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException ioException) {
@@ -101,27 +78,6 @@ public class PIMManager {
 			e.printStackTrace();
 		}
 	}
-
-//	public String switchByClass(PIMEntity p){
-//		if(p instanceof PIMNote){
-//
-//		}
-//		else if(p instanceof PIMContact){
-//
-//		}
-//		else if(p instanceof PIMTodo){
-//
-//		}
-//		else if(p instanceof PIMAppointment){
-//
-//		}
-//	}
-
-
-
-
-
-
 
 
 	public static void main(String[] args) {

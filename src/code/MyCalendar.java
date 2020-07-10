@@ -28,7 +28,7 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
     int yearNow = calendar.get(Calendar.YEAR);
     int year = calendar.get(Calendar.YEAR);//获取当前查询年份，默认为当前年份
     int month = calendar.get(Calendar.MONTH) + 1;//获取当前查询月份，默认为当前月份
-    public File file = new File(Login.userName + ".txt");
+    public File file;
 
     public MyCalendar(String str){//构造方法
         //主要参数设置
@@ -259,7 +259,6 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
         listAction.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 PIMManager.List();
-                //JOptionPane.showMessageDialog(rootPane,"Listed!");
             }
         });
 
@@ -321,28 +320,27 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
 
     @Override
     public PIMCollection getNotes(String owner) throws CustomizedException {
+        file = new File(owner + ".txt");
         try {
             FileInputStream fn = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fn);
             String line = "",all = "";
             PIMCollection<PIMEntity> collection = new PIMCollection<>();
             Object obj;
-            while ((obj=ois.readObject())!=null){
-                if(ois.readObject() instanceof PIMNote){
-                    System.out.println(ois.readObject());
-                    PIMNote pp = (PIMNote) ois.readObject();
+            while ((obj =  ois.readObject()) != null){
+                if(obj instanceof PIMNote){
+                    PIMNote pp = (PIMNote) obj;
                     collection.add(pp);
                 }
             }
-            System.out.println(collection);
             ois.close();
             return collection;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
         return null;
     }
@@ -354,6 +352,7 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
 
     @Override
     public PIMCollection getTodos(String owner) throws CustomizedException {
+        file = new File(owner + ".txt");
         try {
             FileInputStream fn = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fn);
@@ -361,8 +360,8 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
             PIMCollection<PIMEntity> collection = new PIMCollection<>();
             Object obj;
             while ((obj=ois.readObject())!=null){
-                if(ois.readObject() instanceof PIMTodo){
-                    PIMTodo pp = (PIMTodo) ois.readObject();
+                if(obj instanceof PIMTodo){
+                    PIMTodo pp = (PIMTodo) obj;
                     collection.add(pp);
                 }
             }
@@ -385,6 +384,7 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
 
     @Override
     public PIMCollection getAppointments(String owner) throws CustomizedException {
+        file = new File(owner + ".txt");
         try {
             FileInputStream fn = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fn);
@@ -392,8 +392,8 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
             PIMCollection<PIMEntity> collection = new PIMCollection<>();
             Object obj;
             while ((obj=ois.readObject())!=null){
-                if(ois.readObject() instanceof PIMAppointment){
-                    PIMAppointment pp = (PIMAppointment) ois.readObject();
+                if(obj instanceof PIMAppointment){
+                    PIMAppointment pp = (PIMAppointment) obj;
                     collection.add(pp);
                 }
             }
@@ -416,15 +416,16 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
 
     @Override
     public PIMCollection getContacts(String owner) throws CustomizedException {
+        file = new File(owner + ".txt");
         try {
             FileInputStream fn = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fn);
             String line = "",all = "";
             PIMCollection<PIMEntity> collection = new PIMCollection<>();
             Object obj;
-            while ((obj=ois.readObject())!=null){
-                if(ois.readObject() instanceof PIMContact){
-                    PIMContact pp = (PIMContact) ois.readObject();
+            while ((obj = ois.readObject())!=null){
+                if(obj instanceof PIMContact){
+                    PIMContact pp = (PIMContact) obj;
                     collection.add(pp);
                 }
             }
