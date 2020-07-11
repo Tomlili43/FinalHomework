@@ -10,9 +10,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
+import java.util.List;
 
 public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollection {
 
@@ -322,19 +321,16 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
     public PIMCollection getNotes(String owner) throws CustomizedException {
         file = new File(owner + ".txt");
         try {
+            PIMCollection<PIMEntity> list = new PIMCollection<>();
             FileInputStream fn = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fn);
-            String line = "",all = "";
-            PIMCollection<PIMEntity> collection = new PIMCollection<>();
-            Object obj;
-            while ((obj =  ois.readObject()) != null){
-                if(obj instanceof PIMNote){
-                    PIMNote pp = (PIMNote) obj;
-                    collection.add(pp);
-                }
+            while (fn.available() > 0){
+                Object obj = ois.readObject();
+                if(obj instanceof PIMNote)
+                    list.add((PIMNote) obj);
             }
             ois.close();
-            return collection;
+            return list;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -354,19 +350,16 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
     public PIMCollection getTodos(String owner) throws CustomizedException {
         file = new File(owner + ".txt");
         try {
+            PIMCollection<PIMEntity> list = new PIMCollection<>();
             FileInputStream fn = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fn);
-            String line = "",all = "";
-            PIMCollection<PIMEntity> collection = new PIMCollection<>();
-            Object obj;
-            while ((obj=ois.readObject())!=null){
-                if(obj instanceof PIMTodo){
-                    PIMTodo pp = (PIMTodo) obj;
-                    collection.add(pp);
-                }
+            while (fn.available() > 0){
+                Object obj = ois.readObject();
+                if(obj instanceof PIMTodo)
+                    list.add((PIMTodo) obj);
             }
             ois.close();
-            return collection;
+            return list;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException ioException) {
@@ -386,19 +379,16 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
     public PIMCollection getAppointments(String owner) throws CustomizedException {
         file = new File(owner + ".txt");
         try {
+            PIMCollection<PIMEntity> list = new PIMCollection<>();
             FileInputStream fn = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fn);
-            String line = "",all = "";
-            PIMCollection<PIMEntity> collection = new PIMCollection<>();
-            Object obj;
-            while ((obj=ois.readObject())!=null){
-                if(obj instanceof PIMAppointment){
-                    PIMAppointment pp = (PIMAppointment) obj;
-                    collection.add(pp);
-                }
+            while (fn.available() > 0){
+                Object obj = ois.readObject();
+                if(obj instanceof PIMAppointment)
+                    list.add((PIMAppointment) obj);
             }
             ois.close();
-            return collection;
+            return list;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException ioException) {
@@ -418,19 +408,16 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
     public PIMCollection getContacts(String owner) throws CustomizedException {
         file = new File(owner + ".txt");
         try {
+            PIMCollection<PIMEntity> list = new PIMCollection<>();
             FileInputStream fn = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fn);
-            String line = "",all = "";
-            PIMCollection<PIMEntity> collection = new PIMCollection<>();
-            Object obj;
-            while ((obj = ois.readObject())!=null){
-                if(obj instanceof PIMContact){
-                    PIMContact pp = (PIMContact) obj;
-                    collection.add(pp);
-                }
+            while (fn.available() > 0){
+                Object obj = ois.readObject();
+                if(obj instanceof PIMContact)
+                    list.add((PIMContact) obj);
             }
             ois.close();
-            return collection;
+            return list;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException ioException) {
