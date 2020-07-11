@@ -175,13 +175,13 @@ public class PIMManager {
 //						}
 //					break;
 //				case "Create":
-//					System.out.println("Enter an item type ( todo, note, contact or appointment )");
+//					System.out.println("Enter an item type ( to\do, note, contact or appointment )");
 //					String subcmd = in.nextLine();
 //					switch (subcmd) {
-//						case "todo":
-//							PIMTodo todo = new PIMTodo();
+//						case "to\do":
+//							PIMTodo to\do = new PIMTodo();
 //							// input date(String format), then turn it into Date format
-//							System.out.println("Enter date for todo item: ");
+//							System.out.println("Enter date for to\do item: ");
 //							BufferedReader brInTodo1 = new BufferedReader(new InputStreamReader(System.in));
 //							String dt;
 //							try {
@@ -198,9 +198,9 @@ public class PIMManager {
 //							String ct;
 //							try {
 //								ct = brInTodo2.readLine();
-//								todo.setContent(ct);
+//								to\do.setContent(ct);
 //							} catch (IOException e) {
-//								// TODO Auto-generated catch block
+//								// TO\DO Auto-generated catch block
 //								e.printStackTrace();
 //							}
 //

@@ -82,17 +82,10 @@ public class PIMAddEntity extends JFrame {
                         PIMNote pe = new PIMNote();
                         pe.setPriority(levelSelected);
                         pe.owner = Login.userName;
-//                    System.out.println(ItemField.getText());
                         pe.setContent(textField1.getText());
-//                        System.out.println(textField1.getText());
-//                        System.out.println("split");
-//                        System.out.println(pe.content);
-//                        System.out.println(pe.toString());
+
                         PIMManager.EntityList.add(pe);
-//                        System.out.println(PIMManager.EntityList);
-//
-                        //TODO：移植
-//                        PIMManager.Save();
+
                     }
 
                     else if(TODORadioButton.isSelected()){
