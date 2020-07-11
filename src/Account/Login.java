@@ -78,6 +78,10 @@ Login extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+
+        //able to close
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     public void check(String name,String pswd){

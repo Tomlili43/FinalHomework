@@ -50,11 +50,11 @@ public class PIMAddEntity extends JFrame {
         kindGroup.add(APPOINTMENTRadioButton);
 
         //able to close
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //title,size and location
         setTitle("PIMAddEntity");
-        setSize(350,450);
+        setSize(800,450);
         setLocation(350,300);
 
         //ActionListener(when press the bottom button)
