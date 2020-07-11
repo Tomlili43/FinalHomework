@@ -4,6 +4,7 @@ package code;
 import Account.Login;
 
 import javax.swing.*;
+import javax.swing.text.Keymap;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +12,6 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.List;
 
 public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollection {
 
@@ -240,10 +240,12 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
         JMenuItem note = new JMenuItem("Note");
         JMenuItem appointment = new JMenuItem("Appointment");
         JMenuItem contact = new JMenuItem("Contact");
+        JMenuItem dateSearch = new JMenuItem("Get Item For Date");
         viewMenu.add(todo);
         viewMenu.add(note);
         viewMenu.add(appointment);
         viewMenu.add(contact);
+        viewMenu.add(dateSearch);
 
         menuBar.add(fileMenu);
         menuBar.add(viewMenu);
@@ -268,46 +270,63 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
         todo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                    System.out.println(getTodos(Login.userName));
-                } catch (CustomizedException e) {
-                    e.printStackTrace();
+                    presentClassify("Todo",getTodos(Login.userName).toString());
+                } catch (CustomizedException customizedException) {
+                    customizedException.printStackTrace();
                 }
             }
         });
         note.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                    System.out.println(getNotes(Login.userName));
-                } catch (CustomizedException e) {
-                    e.printStackTrace();
+                    presentClassify("Note",getNotes(Login.userName).toString());
+                } catch (CustomizedException customizedException) {
+                    customizedException.printStackTrace();
                 }
             }
         });
         appointment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                    System.out.println(getAppointments(Login.userName));
-                } catch (CustomizedException e) {
-                    e.printStackTrace();
+                    presentClassify("Appointment",getAppointments(Login.userName).toString());
+                } catch (CustomizedException customizedException) {
+                    customizedException.printStackTrace();
                 }
             }
         });
         contact.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                    System.out.println(getContacts(Login.userName));
-                } catch (CustomizedException e) {
-                    e.printStackTrace();
+                    presentClassify("Contact",getContacts(Login.userName).toString());
+                } catch (CustomizedException customizedException) {
+                    customizedException.printStackTrace();
                 }
+            }
+        });
+        dateSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                DateSearch ds = new DateSearch();
             }
         });
 
 
 
 
+
     }
 
-
+    public void presentClassify(String title,String item){
+        JFrame frame = new JFrame(title);
+        JTextArea text = new JTextArea(10,10);
+        text.setFont(new Font("Monospace", Font.BOLD, 20));
+        text.setBackground(new Color(199, 238, 206));
+        frame.add(new JScrollPane(text), BorderLayout.CENTER);
+        frame.setVisible(true);
+        frame.setBounds(200,200,800,500);
+        String contactItems = item;
+        text.setText(contactItems);
+        //System.out.println(getContacts(Login.userName));
+    }
 
 
 

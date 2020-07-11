@@ -40,10 +40,13 @@ public class PIMManager {
 		file = new File(Login.userName + ".txt");
 		boolean isExist = false;//定义一个用来判断文件是否需要截掉头aced 0005的
 		long pos = 0;
-		if(file.exists()){
-			isExist = true;
-		}
+
 		try {
+			FileReader fr = new FileReader(file);
+			if(file.exists() && (fr.read() != -1)){
+				isExist = true;
+			}
+
 			FileOutputStream fn = new FileOutputStream(file,true);
 			ObjectOutputStream oos = new ObjectOutputStream(fn);
 

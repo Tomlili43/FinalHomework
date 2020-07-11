@@ -1,5 +1,6 @@
 package code;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class PIMCollection<T> extends HashSet<T> {
@@ -8,9 +9,7 @@ public class PIMCollection<T> extends HashSet<T> {
         return null;
     }
 
-
-
-//    private Object[] items;
+    //    private Object[] items;
 //    private int cnt;
 //    private final int MAX = 5000;
 //
@@ -48,4 +47,5 @@ public class PIMCollection<T> extends HashSet<T> {
 //                ", MAX=" + MAX +
 //                '}';
 //    }
+
 }
