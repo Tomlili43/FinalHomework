@@ -106,10 +106,10 @@ public class PIMManager {
 			while (fn.available() > 0){
 				list.add((PIMEntity) ois.readObject());
 			}
-			for (PIMEntity p : list) {
-				all = all + p + "\n";
-			}
-			text.setText(all);
+//			for (PIMEntity p : list) {
+//				all = all + p + "\n";
+//			}
+			text.setText(String.valueOf(list));
 
 //			String all = "";
 //			FileInputStream fn = new FileInputStream(file);
