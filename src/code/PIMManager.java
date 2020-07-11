@@ -26,6 +26,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class PIMManager {
@@ -94,16 +95,17 @@ public class PIMManager {
 			listFrame.setVisible(true);
 			listFrame.setBounds(200,200,800,500);
 
-			List<PIMEntity> list = new ArrayList<>();
+			PIMCollection<PIMEntity> list = new PIMCollection<>();
 			FileInputStream fn = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fn);
+			String all = "";
 			while (fn.available() > 0){
 				list.add((PIMEntity) ois.readObject());
 			}
-			for (int i = 0; i < list.size(); i++) {
-				System.out.println(list.get(i));
+			for (PIMEntity p : list) {
+				all = all + p + "\n";
 			}
-
+			text.setText(all);
 
 //			String all = "";
 //			FileInputStream fn = new FileInputStream(file);
