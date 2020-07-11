@@ -42,7 +42,7 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
         leftPanel.add(foot);
         //界面布局
         //北部容器
-        head.setBackground(new Color(245,222,179));
+        head.setBackground(new Color(49, 75, 36));
         head.setLayout(new FlowLayout());
 //        JButton searchJButton=new JButton("查询");
 //        searchJButton.setFont(new Font("SimHei",Font.BOLD,15));
@@ -78,7 +78,7 @@ public class MyCalendar extends JFrame implements ActionListener,RemotePIMCollec
 
         //中部容器
         body.applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);//每行添加组件的顺序
-        body.setBackground(new Color(210,180,140));
+        body.setBackground(new Color(32, 134, 165));
         body.setLayout(new GridLayout(7,7,1,1));
         getDateInfo(String.valueOf(year)+"-"+String.valueOf(month));
 
