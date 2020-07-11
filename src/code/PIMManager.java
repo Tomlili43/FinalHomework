@@ -41,11 +41,13 @@ public class PIMManager {
 		long pos = 0;
 
 		try {
+			if(!file.exists()){
+				file.createNewFile();
+			}
 			FileReader fr = new FileReader(file);
 			if(file.exists() && (fr.read() != -1)){
 				isExist = true;
 			}
-
 			FileOutputStream fn = new FileOutputStream(file,true);
 			ObjectOutputStream oos = new ObjectOutputStream(fn);
 
